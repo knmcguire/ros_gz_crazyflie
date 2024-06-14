@@ -1,14 +1,17 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>ros_gz_crazyflie_description</name>
+  <name>ros_gz_crazyflie_gazebo</name>
   <version>0.0.0</version>
-  <description>SD format description for the Crazyflie</description>
+  <description>Gazebo implementation for Crazyflie</description>
   <maintainer email="kimberly@bitcraze.io">Kimberly McGuire</maintainer>
   <license>MIT</license>
   <author>Kimberly McGuire</author>
 
+
   <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>ros_gz_crazyflie_description</depend>
 
   <test_depend>ament_lint_auto</test_depend>
 
