@@ -1,7 +1,7 @@
 <sdf version='1.6'>
   <model name='crazyflie'>
     <pose>0 0 0.053302 0 0 0</pose>
-    <link name='X3/base_link'>
+    <link name='crazyflie/base_link'>
       <pose frame=''>0 0 0 0 -0 0</pose>
       <inertial>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -15,7 +15,7 @@
           <izz>0.0977</izz>
         </inertia>
       </inertial>
-      <collision name='X3/base_link_inertia_collision'>
+      <collision name='crazyflie/base_link_inertia_collision'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <box>
@@ -23,7 +23,7 @@
           </box>
         </geometry>
       </collision>
-      <visual name='X3/base_link_inertia_visual'>
+      <visual name='crazyflie/base_link_inertia_visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
@@ -33,7 +33,7 @@
         </geometry>
       </visual>
     </link>
-    <link name='X3/rotor_0'>
+    <link name='crazyflie/m1'>
       <pose frame=''>0.13 -0.22 0.023 0 -0 0</pose>
       <inertial>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -47,7 +47,7 @@
           <izz>4.26041e-05</izz>
         </inertia>
       </inertial>
-      <collision name='X3/rotor_0_collision'>
+      <collision name='crazyflie/m1_collision'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <cylinder>
@@ -64,7 +64,7 @@
           </friction>
         </surface>
       </collision>
-      <visual name='X3/rotor_0_visual'>
+      <visual name='crazyflie/m1_visual'>
         <pose frame=''>0 0 0.1 0 -0 0</pose>
         <geometry>
           <mesh>
@@ -72,19 +72,13 @@
             <uri>model://crazyflie/meshes/ccw_prop.dae</uri>
           </mesh>
         </geometry>
-        <material>
-          <script>
-            <name>Gazebo/Blue</name>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-          </script>
-        </material>
       </visual>
       <gravity>1</gravity>
       <velocity_decay/>
     </link>
-    <joint name='X3/rotor_0_joint' type='revolute'>
-      <child>X3/rotor_0</child>
-      <parent>X3/base_link</parent>
+    <joint name='crazyflie/m1_joint' type='revolute'>
+      <child>crazyflie/m1</child>
+      <parent>crazyflie/base_link</parent>
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
@@ -98,7 +92,7 @@
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
-    <link name='X3/rotor_1'>
+    <link name='crazyflie/m2'>
       <pose frame=''>-0.13 0.2 0.023 0 -0 0</pose>
       <inertial>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -112,7 +106,7 @@
           <izz>4.26041e-05</izz>
         </inertia>
       </inertial>
-      <collision name='X3/rotor_1_collision'>
+      <collision name='crazyflie/m2_collision'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <cylinder>
@@ -129,7 +123,7 @@
           </friction>
         </surface>
       </collision>
-      <visual name='X3/rotor_1_visual'>
+      <visual name='crazyflie/m2_visual'>
         <pose frame=''>0 0 0.1 0 -0 0</pose>
         <geometry>
           <mesh>
@@ -137,19 +131,13 @@
             <uri>model://crazyflie/meshes/ccw_prop.dae</uri>
           </mesh>
         </geometry>
-        <material>
-          <script>
-            <name>Gazebo/Red</name>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-          </script>
-        </material>
       </visual>
       <gravity>1</gravity>
       <velocity_decay/>
     </link>
-    <joint name='X3/rotor_1_joint' type='revolute'>
-      <child>X3/rotor_1</child>
-      <parent>X3/base_link</parent>
+    <joint name='crazyflie/m2_joint' type='revolute'>
+      <child>crazyflie/m2</child>
+      <parent>crazyflie/base_link</parent>
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
@@ -163,7 +151,7 @@
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
-    <link name='X3/rotor_2'>
+    <link name='crazyflie/m3'>
       <pose frame=''>0.13 0.22 0.023 0 -0 0</pose>
       <inertial>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -177,7 +165,7 @@
           <izz>4.26041e-05</izz>
         </inertia>
       </inertial>
-      <collision name='X3/rotor_2_collision'>
+      <collision name='crazyflie/m3_collision'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <cylinder>
@@ -194,7 +182,7 @@
           </friction>
         </surface>
       </collision>
-      <visual name='X3/rotor_2_visual'>
+      <visual name='crazyflie/m3_visual'>
         <pose frame=''>0 0 0.1 0 -0 0</pose>
         <geometry>
           <mesh>
@@ -202,19 +190,13 @@
             <uri>model://crazyflie/meshes/cw_prop.dae</uri>
           </mesh>
         </geometry>
-        <material>
-          <script>
-            <name>Gazebo/Blue</name>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-          </script>
-        </material>
       </visual>
       <gravity>1</gravity>
       <velocity_decay/>
     </link>
-    <joint name='X3/rotor_2_joint' type='revolute'>
-      <child>X3/rotor_2</child>
-      <parent>X3/base_link</parent>
+    <joint name='crazyflie/m3_joint' type='revolute'>
+      <child>crazyflie/m3</child>
+      <parent>crazyflie/base_link</parent>
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
@@ -228,7 +210,7 @@
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
-    <link name='X3/rotor_3'>
+    <link name='crazyflie/m4'>
       <pose frame=''>-0.13 -0.2 0.023 0 -0 0</pose>
       <inertial>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -242,7 +224,7 @@
           <izz>4.26041e-05</izz>
         </inertia>
       </inertial>
-      <collision name='X3/rotor_3_collision'>
+      <collision name='crazyflie/m4_collision'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <cylinder>
@@ -259,7 +241,7 @@
           </friction>
         </surface>
       </collision>
-      <visual name='X3/rotor_3_visual'>
+      <visual name='crazyflie/m4_visual'>
         <pose frame=''>0 0 0.1 0 -0 0</pose>
         <geometry>
           <mesh>
@@ -277,9 +259,9 @@
       <gravity>1</gravity>
       <velocity_decay/>
     </link>
-    <joint name='X3/rotor_3_joint' type='revolute'>
-      <child>X3/rotor_3</child>
-      <parent>X3/base_link</parent>
+    <joint name='crazyflie/m4_joint' type='revolute'>
+      <child>crazyflie/m4</child>
+      <parent>crazyflie/base_link</parent>
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
@@ -296,9 +278,9 @@
       <plugin
         filename="ignition-gazebo-multicopter-motor-model-system"
         name="gz::sim::systems::MulticopterMotorModel">
-        <robotNamespace>X3</robotNamespace>
-        <jointName>X3/rotor_0_joint</jointName>
-        <linkName>X3/rotor_0</linkName>
+        <robotNamespace>crazyflie</robotNamespace>
+        <jointName>crazyflie/m1_joint</jointName>
+        <linkName>crazyflie/m1</linkName>
         <turningDirection>ccw</turningDirection>
         <timeConstantUp>0.0125</timeConstantUp>
         <timeConstantDown>0.025</timeConstantDown>
@@ -316,9 +298,9 @@
       <plugin
         filename="ignition-gazebo-multicopter-motor-model-system"
         name="gz::sim::systems::MulticopterMotorModel">
-        <robotNamespace>X3</robotNamespace>
-        <jointName>X3/rotor_1_joint</jointName>
-        <linkName>X3/rotor_1</linkName>
+        <robotNamespace>crazyflie</robotNamespace>
+        <jointName>crazyflie/m2_joint</jointName>
+        <linkName>crazyflie/m2</linkName>
         <turningDirection>ccw</turningDirection>
         <timeConstantUp>0.0125</timeConstantUp>
         <timeConstantDown>0.025</timeConstantDown>
@@ -336,9 +318,9 @@
       <plugin
         filename="ignition-gazebo-multicopter-motor-model-system"
         name="gz::sim::systems::MulticopterMotorModel">
-        <robotNamespace>X3</robotNamespace>
-        <jointName>X3/rotor_2_joint</jointName>
-        <linkName>X3/rotor_2</linkName>
+        <robotNamespace>crazyflie</robotNamespace>
+        <jointName>crazyflie/m3_joint</jointName>
+        <linkName>crazyflie/m3</linkName>
         <turningDirection>cw</turningDirection>
         <timeConstantUp>0.0125</timeConstantUp>
         <timeConstantDown>0.025</timeConstantDown>
@@ -356,9 +338,9 @@
       <plugin
         filename="ignition-gazebo-multicopter-motor-model-system"
         name="gz::sim::systems::MulticopterMotorModel">
-        <robotNamespace>X3</robotNamespace>
-        <jointName>X3/rotor_3_joint</jointName>
-        <linkName>X3/rotor_3</linkName>
+        <robotNamespace>crazyflie</robotNamespace>
+        <jointName>crazyflie/m4_joint</jointName>
+        <linkName>crazyflie/m4</linkName>
         <turningDirection>cw</turningDirection>
         <timeConstantUp>0.0125</timeConstantUp>
         <timeConstantDown>0.025</timeConstantDown>
@@ -376,10 +358,10 @@
       <plugin
         filename="ignition-gazebo-multicopter-control-system"
         name="gz::sim::systems::MulticopterVelocityControl">
-        <robotNamespace>X3</robotNamespace>
+        <robotNamespace>crazyflie</robotNamespace>
         <commandSubTopic>gazebo/command/twist</commandSubTopic>
         <enableSubTopic>enable</enableSubTopic>
-        <comLinkName>X3/base_link</comLinkName>
+        <comLinkName>crazyflie/base_link</comLinkName>
         <velocityGain>2.7 2.7 2.7</velocityGain>
         <attitudeGain>2 3 0.15</attitudeGain>
         <angularRateGain>0.4 0.52 0.18</angularRateGain>
@@ -387,25 +369,25 @@
 
         <rotorConfiguration>
           <rotor>
-            <jointName>X3/rotor_0_joint</jointName>
+            <jointName>crazyflie/m1_joint</jointName>
             <forceConstant>8.54858e-06</forceConstant>
             <momentConstant>0.016</momentConstant>
             <direction>1</direction>
           </rotor>
           <rotor>
-            <jointName>X3/rotor_1_joint</jointName>
+            <jointName>crazyflie/m2_joint</jointName>
             <forceConstant>8.54858e-06</forceConstant>
             <momentConstant>0.016</momentConstant>
             <direction>1</direction>
           </rotor>
           <rotor>
-            <jointName>X3/rotor_2_joint</jointName>
+            <jointName>crazyflie/m3_joint</jointName>
             <forceConstant>8.54858e-06</forceConstant>
             <momentConstant>0.016</momentConstant>
             <direction>-1</direction>
           </rotor>
           <rotor>
-            <jointName>X3/rotor_3_joint</jointName>
+            <jointName>crazyflie/m4_joint</jointName>
             <forceConstant>8.54858e-06</forceConstant>
             <momentConstant>0.016</momentConstant>
             <direction>-1</direction>
