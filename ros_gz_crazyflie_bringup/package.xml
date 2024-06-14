@@ -5,7 +5,7 @@
   <version>0.0.0</version>
   <description>Contains launch files for the ros_gz_crazyflie project</description>
   <maintainer email="kimberly@bitcraze.io">Kimberly McGuire</maintainer>
-  <license>Apache 2.0</license>
+  <license>MIT</license>
   <author>Kimberly McGuire</author>
 
   <depend>ros_gz</depend>
