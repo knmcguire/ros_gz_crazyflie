@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>ros_gz_crazyflie_control</name>
+  <version>0.0.0</version>
+  <description>Simple control scripts for the Crazyflie</description>
+  <maintainer email="kimberly@bitcraze.io">Kimberly McGuire</maintainer>
+  <license>MIT</license>
+
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
