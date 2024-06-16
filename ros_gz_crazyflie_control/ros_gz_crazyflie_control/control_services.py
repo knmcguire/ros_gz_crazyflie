@@ -20,7 +20,6 @@ class ControlServices(Node):
         self.takeoff_height = 0.5
 
     def timer_callback(self):
-        self.get_logger().info('Waiting for takeoff request...')
         if self.takeoff_command:
             msg = Twist()
             msg.linear.z = 0.5
