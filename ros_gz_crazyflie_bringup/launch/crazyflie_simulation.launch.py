@@ -74,6 +74,12 @@ def generate_launch_description():
         output='screen'
     )
 
+    simple_mapper = Node(
+        package='ros_gz_crazyflie_simple_mapper',
+        executable='simple_mapper_multiranger',
+        output='screen'
+    )
+
     # bridge = Node(
     #     package='ros_gz_bridge',
     #     executable='parameter_bridge',
@@ -92,5 +98,6 @@ def generate_launch_description():
         gz_sim,
         bridge,
         #robot_state_publisher
-        control
+        control,
+        simple_mapper
         ])
