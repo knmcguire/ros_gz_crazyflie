@@ -47,7 +47,7 @@ def generate_launch_description():
         launch_arguments={'gz_args': PathJoinSubstitution([
             pkg_project_gazebo,
             'worlds',
-            'crazyflie_world.sdf'
+            'crazyflie_world.sdf -r'
         ])}.items(),
     )
 
@@ -62,16 +62,25 @@ def generate_launch_description():
             {'robot_description': robot_desc},
         ]
     )
-
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
         parameters=[{
             'config_file': os.path.join(pkg_project_bringup, 'config', 'ros_gz_crazyflie_bridge.yaml'),
-            'qos_overrides./tf_static.publisher.durability': 'transient_local',
         }],
+        remappings=[
+            ('/model/crazyflie/pose','/tf'),
+        ],
         output='screen'
     )
+
+    # bridge = Node(
+    #     package='ros_gz_bridge',
+    #     executable='parameter_bridge',
+    #     arguments=['lidar@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
+    #                '/lidar/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked'],
+    #     output='screen'
+    # )
 
     control = Node(
         package='ros_gz_crazyflie_control',
