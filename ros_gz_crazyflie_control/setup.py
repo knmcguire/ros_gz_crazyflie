@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'control_services = ros_gz_crazyflie_control.control_services:main',
         ],
     },
 )

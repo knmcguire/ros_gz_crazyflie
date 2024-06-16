@@ -73,8 +73,15 @@ def generate_launch_description():
         output='screen'
     )
 
+    control = Node(
+        package='ros_gz_crazyflie_control',
+        executable='control_services',
+        output='screen'
+    )
+
     return LaunchDescription([
         gz_sim,
         bridge,
         #robot_state_publisher
+        control
         ])
