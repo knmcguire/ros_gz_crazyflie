@@ -1,5 +1,7 @@
 # ros-gz-crazyflie
 
+> Still work in progress!
+
 Made for ROS2 humble and Gazebo Fortress
 
 ## Usage
