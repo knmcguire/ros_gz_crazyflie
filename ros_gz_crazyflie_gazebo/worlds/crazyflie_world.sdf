@@ -62,5 +62,19 @@
       <name>crazyflie</name>
       <pose>0 0 0 0 0 0</pose>
     </include>
+
+          <model name="wall1">
+      <pose>4 0 0 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4 4 1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
   </world>
 </sdf>
