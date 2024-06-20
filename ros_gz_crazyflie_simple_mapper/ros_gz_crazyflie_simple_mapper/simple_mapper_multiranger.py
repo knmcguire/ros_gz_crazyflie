@@ -31,13 +31,13 @@ MAP_RES = 0.1
 class SimpleMapperMultiranger(Node):
     def __init__(self):
         super().__init__('simple_mapper_multiranger')
-        self.declare_parameter('robot_prefix', '/crazyflie')
+        self.declare_parameter('robot_prefix', '/crazyflie_real')
         robot_prefix = self.get_parameter('robot_prefix').value
 
         self.odom_subscriber = self.create_subscription(
-            Odometry, robot_prefix + '/odometry', self.odom_subscribe_callback, 10)
+            Odometry, robot_prefix + '/odom', self.odom_subscribe_callback, 10)
         self.ranges_subscriber = self.create_subscription(
-            LaserScan, '/lidar', self.scan_subscribe_callback, 10)
+            LaserScan, robot_prefix + '/scan', self.scan_subscribe_callback, 10)
         self.position = [0.0, 0.0, 0.0]
         self.angles = [0.0, 0.0, 0.0]
         self.ranges = [0.0, 0.0, 0.0, 0.0]
@@ -47,7 +47,7 @@ class SimpleMapperMultiranger(Node):
         t_map = TransformStamped()
         t_map.header.stamp = self.get_clock().now().to_msg()
         t_map.header.frame_id = 'map'
-        t_map.child_frame_id = 'crazyflie/odom'
+        t_map.child_frame_id = 'crazyflie_real/odom'
         t_map.transform.translation.x = 0.0
         t_map.transform.translation.y = 0.0
         t_map.transform.translation.z = 0.0

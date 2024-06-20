@@ -32,28 +32,28 @@ MAP_RES = 0.1
 class WallFollowingMultiranger(Node):
     def __init__(self):
         super().__init__('simple_mapper_multiranger')
-        self.declare_parameter('robot_prefix', '/crazyflie')
+        self.declare_parameter('robot_prefix', '/crazyflie_real')
         robot_prefix = self.get_parameter('robot_prefix').value
 
         self.odom_subscriber = self.create_subscription(
-            Odometry, robot_prefix + '/odometry', self.odom_subscribe_callback, 10)
+            Odometry, robot_prefix + '/odom', self.odom_subscribe_callback, 10)
         self.ranges_subscriber = self.create_subscription(
-            LaserScan, '/lidar', self.scan_subscribe_callback, 10)
+            LaserScan, robot_prefix + '/scan', self.scan_subscribe_callback, 10)
         self.position = [0.0, 0.0, 0.0]
         self.angles = [0.0, 0.0, 0.0]
         self.ranges = [0.0, 0.0, 0.0, 0.0]
 
         self.position_update = False
 
-        self.twist_publisher = self.create_publisher(Twist, robot_prefix + '/cmd_vel', 10)
+        self.twist_publisher = self.create_publisher(Twist, '/cmd_vel', 10)
 
         self.get_logger().info(f"Wall following set for crazyflie " + robot_prefix +
                                f" using the scan topic")
         self.timer = self.create_timer(0.01, self.timer_callback)
 
         self.wall_following = WallFollowing(
-        angle_value_buffer=0.05, reference_distance_from_wall=1.0,
-        max_forward_speed=0.5, init_state=WallFollowing.StateWallFollowing.FORWARD)
+        angle_value_buffer=0.1, reference_distance_from_wall=0.5,
+        max_forward_speed=0.3, init_state=WallFollowing.StateWallFollowing.FORWARD)
 
     def timer_callback(self):
         # initialize variables
