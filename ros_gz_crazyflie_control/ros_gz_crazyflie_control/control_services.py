@@ -35,6 +35,7 @@ class ControlServices(Node):
     def takeoff_callback(self, request, response):
 
         self.takeoff_command = True
+        response.success = True
         return response
 
 

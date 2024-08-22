@@ -74,20 +74,6 @@ def generate_launch_description():
         output='screen'
     )
 
-    simple_mapper = Node(
-        package='ros_gz_crazyflie_simple_mapper',
-        executable='simple_mapper_multiranger',
-        output='screen'
-    )
-
-    # bridge = Node(
-    #     package='ros_gz_bridge',
-    #     executable='parameter_bridge',
-    #     arguments=['lidar@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
-    #                '/lidar/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked'],
-    #     output='screen'
-    # )
-
     control = Node(
         package='ros_gz_crazyflie_control',
         executable='control_services',
@@ -97,7 +83,4 @@ def generate_launch_description():
     return LaunchDescription([
         gz_sim,
         bridge,
-        #robot_state_publisher
-        control,
-        simple_mapper
-        ])
+        control        ])

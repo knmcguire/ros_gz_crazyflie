@@ -14,11 +14,6 @@
   ros_type_name: "nav_msgs/msg/Odometry"
   gz_type_name: "gz.msgs.Odometry"
   direction: GZ_TO_ROS
-- ros_topic_name: "/clock"
-  gz_topic_name: "/clock"
-  ros_type_name: "rosgraph_msgs/msg/clock"
-  gz_type_name: "gz.msgs.Clock"
-  direction: GZ_TO_ROS
 - ros_topic_name: "/tf"
   gz_topic_name: "/model/crazyflie/pose"
   ros_type_name: "tf2_msgs/msg/TFMessage"
