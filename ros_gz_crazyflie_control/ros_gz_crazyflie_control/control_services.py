@@ -9,15 +9,25 @@ class ControlServices(Node):
 
     def __init__(self):
         super().__init__('control_services')
-        self.publisher_ = self.create_publisher(Twist, 'crazyflie/cmd_vel', 10)
-        self.subscriber = self.create_subscription(Odometry, 'crazyflie/odometry', self.odometry_callback, 10)
-        self.subscriber = self.create_subscription(Twist, '/cmd_vel', self.cmd_vel_callback, 10)
+        self.declare_parameter('hover_height', 0.5)
+        self.declare_parameter('robot_prefix', '/crazyflie')
+        self.declare_parameter('incoming_twist_topic', '/cmd_vel')
+        self.declare_parameter('max_ang_z_rate', 0.4)
+
+        hover_height = self.get_parameter('hover_height').value
+        robot_prefix = self.get_parameter('robot_prefix').value
+        incoming_twist_topic = self.get_parameter('incoming_twist_topic').value
+        max_ang_z_rate = self.get_parameter('max_ang_z_rate').value
+
+        self.publisher_ = self.create_publisher(Twist, robot_prefix + incoming_twist_topic, 10)
+        self.subscriber = self.create_subscription(Odometry, robot_prefix + '/odometry', self.odometry_callback, 10)
+        self.subscriber = self.create_subscription(Twist, incoming_twist_topic, self.cmd_vel_callback, 10)
         self.timer = self.create_timer(0.1, self.timer_callback)
 
         self.takeoff_command = False
         self.current_pose = Odometry().pose.pose
-        self.takeoff_height = 0.5
-        self.max_ang_z_rate = 0.4
+        self.takeoff_height = hover_height
+        self.max_ang_z_rate = max_ang_z_rate
         self.is_flying = False
         self.keep_height = False
         self.teleop_cmd = Twist()
@@ -25,7 +35,6 @@ class ControlServices(Node):
     def timer_callback(self):
         msg = self.teleop_cmd
         height_command = msg.linear.z
-
         new_cmd_msg = Twist()
 
         # If the drone is flying, only allow to transfer the twist message
@@ -37,6 +46,7 @@ class ControlServices(Node):
             new_cmd_msg.angular.y = msg.angular.y
             new_cmd_msg.angular.z = msg.angular.z
 
+        # If not flying and receiving a velocity height command, takeoff
         if height_command > 0 and not self.is_flying:
             new_cmd_msg.linear.z = 0.5
             if self.current_pose.position.z > self.takeoff_height:
@@ -46,7 +56,8 @@ class ControlServices(Node):
                 self.is_flying = True
                 self.get_logger().info('Takeoff completed')
 
-
+        # If flying and if the height command is negative, and it is below a certain height
+        # then consider it a land
         if height_command < 0 and self.is_flying:
             if self.current_pose.position.z < 0.1:
                 new_cmd_msg.linear.z = 0.0
@@ -54,9 +65,11 @@ class ControlServices(Node):
                 self.keep_height = False
                 self.get_logger().info('Landing completed')
 
+        # Cap the angular rate command in the z axis
         if abs(msg.angular.z) > self.max_ang_z_rate:
             new_cmd_msg.angular.z = self.max_ang_z_rate * abs(msg.angular.z)/msg.angular.z
 
+        # If there is no control in height and the drone is flying, control and maintain the height
         tolerance = 1e-7
         if abs(height_command) < tolerance and self.is_flying:
             if not self.keep_height:
@@ -66,6 +79,7 @@ class ControlServices(Node):
                 error = self.desired_height - self.current_pose.position.z
                 new_cmd_msg.linear.z = error
 
+        # If there is control in height and the drone is flying, stop maintaining the height
         if abs(height_command) > tolerance and self.is_flying:
             if self.keep_height:
                 self.keep_height = False
