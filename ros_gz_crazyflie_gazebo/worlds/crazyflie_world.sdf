@@ -63,14 +63,56 @@
       <pose>0 0 0 0 0 0</pose>
     </include>
 
-          <model name="wall1">
-      <pose>4 0 0 0 0 0</pose>
+    <model name="wall1">
+      <pose>2 0 0.5 0 0 0</pose>
       <static>true</static>
       <link name="link">
         <visual name="visual">
           <geometry>
             <box>
-              <size>4 4 1</size>
+              <size>0.2 4 1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall2">
+      <pose>-2 0 0.5 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 4 1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall3">
+      <pose>0 2 0.5 0 0 1.57</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 4 1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall4">
+      <pose>0 -2 0.5 0 0 1.57</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 4 1</size>
             </box>
           </geometry>
         </visual>
