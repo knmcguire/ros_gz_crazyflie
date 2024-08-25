@@ -8,10 +8,7 @@
   <license>MIT</license>
   <author>Kimberly McGuire</author>
 
-
   <buildtool_depend>ament_cmake</buildtool_depend>
-
-  <depend>ros_gz_crazyflie_description</depend>
 
   <test_depend>ament_lint_auto</test_depend>
 

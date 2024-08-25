@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.5)
 project(ros_gz_crazyflie_gazebo)
 
 find_package(ament_cmake REQUIRED)
-find_package(ros_gz_crazyflie_description REQUIRED)
 
 find_package(ignition-cmake2 REQUIRED)
 find_package(ignition-plugin1 REQUIRED COMPONENTS register)
