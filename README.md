@@ -20,7 +20,7 @@ Clone the crazyflie simulation repo and source the crazyflie model
     mkdir ~/simulation_models/
     cd ~/simulation_models/
     git clone git@github.com:bitcraze/crazyflie-simulation.git
-    export GZ_SIM_RESOURCE_PATH=~/simulation_models/simulator_files/gazebo/"
+    export GZ_SIM_RESOURCE_PATH=~/simulation_models/crazyflie-simulation/simulator_files/gazebo/"
 
 Build the ros workspace with
 
