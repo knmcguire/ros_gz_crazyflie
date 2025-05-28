@@ -29,11 +29,13 @@ Build the ros workspace with
 
 Run with
 
+    source install/local_setup.bash
     ros2 launch ros_gz_crazyflie_bringup crazyflie_simulation.launch.py
 
 
 In a different terminal, open ROS 2 teleop twist keyboard node with
 
+    source /opt/ros/humble/setup.bash
     ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=crazyflie/cmd_vel
 
 Take off with pressing 't' and then control the crazyflie with the keyboard according to the teleop_twist_keyboard instructions.
