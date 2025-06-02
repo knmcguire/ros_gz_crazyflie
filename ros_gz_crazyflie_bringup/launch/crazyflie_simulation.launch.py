@@ -29,21 +29,27 @@ from launch_ros.actions import Node
 def generate_launch_description():
     # Configure ROS nodes for launch
 
+    gz_ln_arg = DeclareLaunchArgument(
+        'gazebo_launch',
+        default_value='True'
+    )
     # Setup project paths
     pkg_project_bringup = get_package_share_directory('ros_gz_crazyflie_bringup')
     pkg_project_gazebo = get_package_share_directory('ros_gz_crazyflie_gazebo')
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
-    gz_model_path = os.getenv('GZ_SIM_RESOURCE_PATH')
 
     # Load the SDF file from "description" package
-    sdf_file  =  os.path.join(gz_model_path, 'crazyflie', 'model.sdf')
-    with open(sdf_file, 'r') as infp:
-        robot_desc = infp.read()
+    if LaunchConfiguration('gazebo_launch') == 'True':
+        gz_model_path = os.getenv('GZ_SIM_RESOURCE_PATH')
+        sdf_file  =  os.path.join(gz_model_path, 'crazyflie', 'model.sdf')
+        with open(sdf_file, 'r') as infp:
+            robot_desc = infp.read()
 
     # Setup to launch the simulator and Gazebo world
     gz_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
+            condition=IfCondition(LaunchConfiguration('gazebo_launch')),
         launch_arguments={'gz_args': PathJoinSubstitution([
             pkg_project_gazebo,
             'worlds',
@@ -74,6 +80,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        gz_ln_arg,
         gz_sim,
         bridge,
         control        ])

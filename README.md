@@ -1,10 +1,13 @@
 # ros-gz-crazyflie
 
-> Still work in progress!
+> Experimental
 
 > The modules for the multiranger, like the simple mapper and wall following are moved to: https://github.com/knmcguire/crazyflie_ros2_multiranger
 
-Made for ROS2 humble and Gazebo Harmonic on Ubuntu 22.04
+Tested on:
+* ROS 2 Humble with Gazebo Harmonic (2024/09/02)
+* ROS 2 Jazzy () with Gazebo Harmonic (2025/06/02)
+* ROS 2 Ionic with Gazebo Ionic (2025/06/02)
 
 ## Usage
 
@@ -35,8 +38,8 @@ Run with
 
 In a different terminal, open ROS 2 teleop twist keyboard node with
 
-    source /opt/ros/humble/setup.bash
-    ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=crazyflie/cmd_vel
+    source /opt/ros/DISTRO/setup.bash
+    ros2 run teleop_twist_keyboard teleop_twist_keyboard
 
 Take off with pressing 't' and then control the crazyflie with the keyboard according to the teleop_twist_keyboard instructions.
 
