@@ -37,12 +37,13 @@ def generate_launch_description():
     pkg_project_bringup = get_package_share_directory('ros_gz_crazyflie_bringup')
     pkg_project_gazebo = get_package_share_directory('ros_gz_crazyflie_gazebo')
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
-    gz_model_path = os.getenv('GZ_SIM_RESOURCE_PATH')
 
     # Load the SDF file from "description" package
-    sdf_file  =  os.path.join(gz_model_path, 'crazyflie', 'model.sdf')
-    with open(sdf_file, 'r') as infp:
-        robot_desc = infp.read()
+    if LaunchConfiguration('gazebo_launch') == 'True':
+        gz_model_path = os.getenv('GZ_SIM_RESOURCE_PATH')
+        sdf_file  =  os.path.join(gz_model_path, 'crazyflie', 'model.sdf')
+        with open(sdf_file, 'r') as infp:
+            robot_desc = infp.read()
 
     # Setup to launch the simulator and Gazebo world
     gz_sim = IncludeLaunchDescription(
