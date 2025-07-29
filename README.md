@@ -1,12 +1,12 @@
 # ros-gz-crazyflie
 
-> Experimental
+> Disclaimer: This project is experimental and prone to errors as it is not regularly maintained. Please start a ticket if you encounter any issues but do expect limited support
 
 > The modules for the multiranger, like the simple mapper and wall following are moved to: https://github.com/knmcguire/crazyflie_ros2_multiranger
 
 Tested on:
 * ROS 2 Humble with Gazebo Harmonic (2024/09/02)
-* ROS 2 Jazzy () with Gazebo Harmonic (2025/06/02)
+* ROS 2 Jazzy with Gazebo Harmonic (2025/06/02)
 * ROS 2 Ionic with Gazebo Ionic (2025/06/02)
 
 ## Usage
